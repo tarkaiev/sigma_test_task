@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Data
 @Entity
 @Table(name = "users")
+@DynamicUpdate
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,7 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     private String login;
     private String password;
     private String about;

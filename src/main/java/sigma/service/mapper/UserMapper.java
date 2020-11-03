@@ -1,5 +1,7 @@
 package sigma.service.mapper;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Component;
 import sigma.model.User;
 import sigma.model.dto.UserRequestDto;
@@ -13,7 +15,8 @@ public class UserMapper {
         user.setLastName(dto.getLastName());
         user.setLogin(dto.getLogin());
         user.setPassword(dto.getPassword());
-        user.setDateOfBirth(dto.getDateOfBirth());
+        user.setDateOfBirth(LocalDate.parse(dto.getDateOfBirth(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         user.setAbout(dto.getAbout());
         user.setAddress(dto.getAddress());
         return user;
@@ -25,7 +28,7 @@ public class UserMapper {
         dto.setLogin(user.getLogin());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
-        dto.setDateOfBirth(user.getDateOfBirth());
+        dto.setDateOfBirth(user.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         dto.setAbout(user.getAbout());
         dto.setAddress(user.getAddress());
         return dto;

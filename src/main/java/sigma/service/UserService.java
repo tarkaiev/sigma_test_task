@@ -18,6 +18,23 @@ public class UserService {
         userDao.add(user);
     }
 
+    public void update(User user) {
+        User userFromDb = findByLogin(user.getLogin());
+        userFromDb.setFirstName(user.getFirstName());
+        userFromDb.setLastName(user.getLastName());
+        userFromDb.setDateOfBirth(user.getDateOfBirth());
+        userFromDb.setAbout(user.getAbout());
+        userFromDb.setAddress(user.getAddress());
+        userFromDb.setPassword(user.getPassword());
+        userDao.update(userFromDb);
+    }
+
+    public void delete(User user) {
+        User userFromDb = findByLogin(user.getLogin());
+        userFromDb.setDeleted(true);
+        userDao.update(userFromDb);
+    }
+
     public User findByLogin(String login) {
         return userDao.findByLogin(login);
     }

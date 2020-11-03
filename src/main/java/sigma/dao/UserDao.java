@@ -56,27 +56,6 @@ public class UserDao {
         }
     }
 
-    public void delete(User user) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            user.setDeleted(true);
-            session.update(user);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new RuntimeException("Can't delete user " + user, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
-
     public User findByLogin(String login) {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("from User where "
