@@ -1,0 +1,1 @@
+CREATE SCHEMA `sigma_test` DEFAULT CHARACTER SET utf8 ;
