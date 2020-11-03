@@ -43,7 +43,7 @@ public class AppConfig {
         properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 
         sessionFactoryBean.setHibernateProperties(properties);
-        sessionFactoryBean.setPackagesToScan("movie.tickets.model");
+        sessionFactoryBean.setPackagesToScan("sigma.model");
         return sessionFactoryBean;
     }
 }
